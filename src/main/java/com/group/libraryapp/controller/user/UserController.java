@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping("/user")
     public List<UserResponse> getUsers() {
-        String sql = "select from * from user";
+        String sql = "select * from user";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             long id = rs.getLong("id");
             String name = rs.getString("name");
