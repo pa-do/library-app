@@ -4,17 +4,14 @@ import com.group.libraryapp.fruit.dto.request.FruitCreateRequest;
 import com.group.libraryapp.fruit.dto.request.FruitSoldRequest;
 import com.group.libraryapp.fruit.dto.response.FruitSalesAmountResponse;
 import com.group.libraryapp.fruit.service.FruitService;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class FruitController {
-    private final JdbcTemplate jdbcTemplate;
 
     private final FruitService fruitService;
 
-    public FruitController(JdbcTemplate jdbcTemplate, FruitService fruitService) {
-        this.jdbcTemplate = jdbcTemplate;
+    public FruitController(FruitService fruitService) {
         this.fruitService = fruitService;
     }
 
