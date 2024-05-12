@@ -33,10 +33,10 @@ public class UserServiceV2 {
 
     @Transactional
     public void updateUser(UserUpdateRequest request) {
-        User user = userRepository.findById(request.getId()).orElseThrow(IllegalAccessError::new);
+        User user = userRepository.findById(request.getId())
+                .orElseThrow(IllegalArgumentException::new);
 
         user.updateName(request.getName());
-        userRepository.save(user);
     }
 
     @Transactional

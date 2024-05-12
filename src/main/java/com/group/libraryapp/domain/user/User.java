@@ -15,6 +15,7 @@ public class User {
 
     @Column(nullable = false, length = 20)
     private String name;
+
     private Integer age;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
