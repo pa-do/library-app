@@ -3,6 +3,7 @@ package com.group.libraryapp.fruit.service;
 import com.group.libraryapp.fruit.domain.Fruit;
 import com.group.libraryapp.fruit.dto.request.FruitCreateRequest;
 import com.group.libraryapp.fruit.dto.request.FruitSoldRequest;
+import com.group.libraryapp.fruit.dto.response.FruitCountResponse;
 import com.group.libraryapp.fruit.dto.response.FruitResponse;
 import com.group.libraryapp.fruit.dto.response.FruitSalesAmountResponse;
 import com.group.libraryapp.fruit.repository.FruitRepository;
@@ -47,6 +48,10 @@ public class FruitService {
         }
 
         return new FruitSalesAmountResponse(salesAmount, notSalesAmount);
+    }
+
+    public FruitCountResponse getCountOfFruits(String name) {
+        return new FruitCountResponse(fruitRepository.countByName(name));
     }
 
     public List<FruitResponse> getExistFruits(String option, Long price) {

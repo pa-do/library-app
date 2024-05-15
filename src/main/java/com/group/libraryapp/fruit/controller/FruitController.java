@@ -2,6 +2,7 @@ package com.group.libraryapp.fruit.controller;
 
 import com.group.libraryapp.fruit.dto.request.FruitCreateRequest;
 import com.group.libraryapp.fruit.dto.request.FruitSoldRequest;
+import com.group.libraryapp.fruit.dto.response.FruitCountResponse;
 import com.group.libraryapp.fruit.dto.response.FruitResponse;
 import com.group.libraryapp.fruit.dto.response.FruitSalesAmountResponse;
 import com.group.libraryapp.fruit.service.FruitService;
@@ -31,6 +32,11 @@ public class FruitController {
     @GetMapping("/api/v1/fruit/stat")
     public FruitSalesAmountResponse statFruit(@RequestParam String name) {
         return fruitService.statFruit(name);
+    }
+
+    @GetMapping("/api/v1/fruit/count")
+    public FruitCountResponse getCountOfFruits(@RequestParam String name) {
+        return fruitService.getCountOfFruits(name);
     }
 
     @GetMapping("/api/v1/fruit/list")

@@ -13,4 +13,6 @@ public interface FruitRepository extends JpaRepository<Fruit, Long> {
     List<Fruit> findAllByIsSoldAndPriceGreaterThanEqual(boolean b, Long price);
 
     List<Fruit> findAllByIsSoldAndPriceLessThanEqual(boolean b, Long price);
+
+    long countByName(String name);
 }
