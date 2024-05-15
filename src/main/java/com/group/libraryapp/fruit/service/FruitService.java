@@ -3,11 +3,13 @@ package com.group.libraryapp.fruit.service;
 import com.group.libraryapp.fruit.domain.Fruit;
 import com.group.libraryapp.fruit.dto.request.FruitCreateRequest;
 import com.group.libraryapp.fruit.dto.request.FruitSoldRequest;
+import com.group.libraryapp.fruit.dto.response.FruitResponse;
 import com.group.libraryapp.fruit.dto.response.FruitSalesAmountResponse;
 import com.group.libraryapp.fruit.repository.FruitRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -45,5 +47,27 @@ public class FruitService {
         }
 
         return new FruitSalesAmountResponse(salesAmount, notSalesAmount);
+    }
+
+    public List<FruitResponse> getExistFruits(String option, Long price) {
+        List<Fruit> fruits = new ArrayList<>();
+        List<FruitResponse> response = new ArrayList<>();
+
+        switch (option) {
+            case "GTE":
+                fruits = fruitRepository.findAllByIsSoldAndPriceGreaterThanEqual(false, price);
+                break;
+            case "LTE":
+                fruits = fruitRepository.findAllByIsSoldAndPriceLessThanEqual(false, price);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid option");
+        }
+
+        for (Fruit fruit : fruits) {
+            response.add(new FruitResponse(fruit.getName(), fruit.getPrice(), fruit.getWarehousingDate()));
+        }
+        
+        return response;
     }
 }

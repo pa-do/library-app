@@ -9,4 +9,8 @@ import java.util.List;
 @Repository
 public interface FruitRepository extends JpaRepository<Fruit, Long> {
     List<Fruit> findAllByName(String name);
+
+    List<Fruit> findAllByIsSoldAndPriceGreaterThanEqual(boolean b, Long price);
+
+    List<Fruit> findAllByIsSoldAndPriceLessThanEqual(boolean b, Long price);
 }
